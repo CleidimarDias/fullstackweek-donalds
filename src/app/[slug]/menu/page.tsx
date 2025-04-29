@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ChevronLeftIcon, ScrollTextIcon } from "lucide-react";
 import RestaurantHeader from "./components/header";
+import RestaurantCategories from "./components/categories";
 
 interface RestaurantMenuPageProps {
   params: Promise<{ slug: string }>;
@@ -34,5 +35,10 @@ export default async function RestaurantMenuPage({
     return notFound();
   }
 
-  return <RestaurantHeader restaurant={restaurante} />;
+  return (
+    <div>
+      <RestaurantHeader restaurant={restaurante} />;
+      <RestaurantCategories restaurant={restaurante} />
+    </div>
+  );
 }
