@@ -1,11 +1,10 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { getRestaurantBySlug } from "@/data/get-restaurant-by-slug";
 import { db } from "@/lib/prisma";
 import { get } from "http";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import React from "react";
+import ConsumptionMethodOptions from "./components/consumption-method-options";
 
 interface RestaurantePageProps {
   params: Promise<{ slug: string }>;
@@ -40,20 +39,21 @@ export default async function RestaurantePage({
           praticidade e sabor em cada detalhe!
         </p>
       </div>
-      <div className="grid grid-cols-2 pt-14">
-        <Card>
-          <CardContent className="flex flex-col items-center gap-8 py-8">
-            <Image
-              width={78}
-              height={80}
-              src="/dine_in.png"
-              alt="para comer aqui"
-            />
-            <Button variant="secondary" className="rounded-full">
-              Para comer aqui.
-            </Button>
-          </CardContent>
-        </Card>
+      <div className="grid grid-cols-2 gap-4 pt-14">
+        <ConsumptionMethodOptions
+          slug={slug}
+          imageUrl="/dine_in.png"
+          altText="Para comer aqui"
+          buttonText="comer aqui"
+          option="DINE_IN"
+        />
+        <ConsumptionMethodOptions
+          slug={slug}
+          imageUrl="/takeaway.png"
+          altText="Para levar"
+          buttonText="levar"
+          option="TAKEAWAY"
+        />
       </div>
     </div>
   );
